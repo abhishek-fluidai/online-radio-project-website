@@ -1,0 +1,70 @@
+    #play-icon {
+   background-image: url(../../assets/Icons/play-green.svg);
+        background-size: 18px;
+       
+    }
+
+    #pause-icon {
+   background-image: url(../../assets/Icons/pause-g.svg);
+        background-size: 12px;
+        visibility:visible
+}
+#stop-icon {
+     background-image: url(../../assets/Icons/stop.svg);
+        background-size: 18px;
+}
+.play-controls {
+        background: rgba(16,24,32,.5) 50% no-repeat;
+     width: 30px;
+    height: 30px;
+    cursor: pointer;
+    background: rgba(16,24,32,.5) 50% no-repeat;
+    border-radius: 200px;
+    color: hsla(0,0%,100%,.5);
+    padding: 0;
+    height: 3.85rem;
+    width: 3.85rem;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    text-align: center;
+    outline: none;
+    border:none;
+    
+}
+#player-controls {
+    display: flex;
+    margin-right: 10px
+}
+.player-title {
+    color: #fff;
+   margin: 0 5px
+}
+.player-img {
+     flex-shrink: 1;
+    display: inline;
+    width: 200px;
+    margin: 8px;
+    max-width: 30%;
+}
+.player-img img {
+ width: 100%;
+}
+.player {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+        background: rgba(16,24,32,.95);
+    bottom: 15px;
+    right: 15px;
+    position: fixed;
+    border-radius: 15px;
+    max-width: 500px;
+    height: 100px;
+    overflow: hidden;
+    
+
+        
+}

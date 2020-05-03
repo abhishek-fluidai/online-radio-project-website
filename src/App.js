@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import RadioBrowser from 'radio-browser';
+import axios from 'axios';
 import './App.css';
 import Player from './components/Player/Player'
 import Header from './components/Header/Header'
@@ -10,33 +10,26 @@ function App() {
   const [stations, tuneStations] = useState([]);
   const [playerInfo, setPlayerInfo] = useState('');
   const [term, setTerm] = useState('');
-    const didMountRef = useRef(false)
+    const didMountRef = useRef(false);
+    const BASE_URL = "https://fr1.api.radio-browser.info/json";
 
   useEffect(() => {
-   
-        let filter = {
-               by: 'topvote', // stations by topvote
-            rowcount: 9    // top 5 stations
-        }
-    RadioBrowser.getStations(filter)
+
+    axios.get(BASE_URL+'/stations/topvote/9')
       .then(info => {
-        tuneStations(info);
-         console.log(info)
+        tuneStations(info.data);
+//         console.log(info.data)
       })
       .catch(error => console.error(error))
   }, [])
-    
-    
    
     useEffect(() => {
     if (didMountRef.current) {
-        let filter = {
-            searchterm: term
-        }
-    RadioBrowser.getStations(filter)
+
+    axios.get(BASE_URL+'/stations/search?name='+term+"&&limit=10")
       .then(info => {
-        tuneStations(info);
-        // console.log(info)
+        tuneStations(info.data);
+        console.log(info.data)
       })
       .catch(error => console.error(error))
       console.log("searching...")
@@ -61,11 +54,10 @@ function App() {
         if (e !== "" || e !== null) {
             setTerm(e)
         }
-//        console.log(e)
     }
    const stationsList =
      stations.map(stn => (
-       <Station key={stn.id} favicon={stn.favicon}
+       <Station key={stn.stationuuid} favicon={stn.favicon}
          name={stn.name}
          country={stn.country}
          language={stn.votes} 
@@ -76,7 +68,6 @@ function App() {
 
   return (
     <div className="App">
-      
       <Header searcHandler={searchStations}/>
       <div className="stations">
          {stationsList}

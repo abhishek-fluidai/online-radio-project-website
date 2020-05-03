@@ -1,9 +1,12 @@
 import React , {useState}from 'react';
-import Style from './Header.module.css'
-import logo from '../../assets/img/logo.png'
+import Style from './Header.module.css';
+import logo from '../../assets/img/logo.png';
+
 
 const Header = (props) => {
     const [value,setValue]  = useState('');
+   
+
     
 	return (
 		<header id={Style["Header"]}>
@@ -14,7 +17,9 @@ const Header = (props) => {
 				<img src={logo} alt="logo" onClick={() => "http://localhost:3000"} />
 				<h2 id={Style["logo"]}>Indi-FM</h2>
 			</div>
-			<div className={Style["search-box"]} >
+
+                    
+			<div className={Style["search-box"]} id={"searchBox"}>
 				<input 
                 className={Style["search"]}     
                 type="text" 
@@ -23,6 +28,7 @@ const Header = (props) => {
                 onChange={e => setValue(e.target.value)}/>
 				<span onClick={() => props.searcHandler(value)} >&#xbb;</span>
 			</div>
+                
 		</header>
 
 	)

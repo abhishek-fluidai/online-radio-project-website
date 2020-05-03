@@ -1,15 +1,14 @@
 import React, {useState} from 'react';
 import styles from './Player.module.css'
-//import playicon from '../../assets/Icons/play-green.svg'
-//import pauseicon from '../../assets/Icons/pause-g.svg'
 import icon from '../../assets/Icons/wave-1.png'
+import ReactPlayer from 'react-player'
 
 
 const Player = (props) => {
-    const [playing , setPlaying] = useState('');
+    const [playing , setPlaying] = useState(false);
     const [playerText, setText] = useState("Loading")
     const [playble, setPlayble] = useState(false);
-    const Player = document.getElementById("player");
+
     
     const pause = () => {
        setPlaying(false)
@@ -19,35 +18,32 @@ const Player = (props) => {
         
     }
    const makePlay = () => {
-       setPlayble(true);
+   
        setPlaying(true)
-       Player.play()
+       setPlayble(true)
+       setText(props.name)
+       
    }
    const makeunplay = () => {
-       setPlayble(false);
        setPlaying(false);
+         setPlayble(false)
        setText("Loading...")
    }
    const delStream = () => {
-//       alert("station is offline!")
-       setText("Stream offline")
+       setText("Stream Buffering or offine")
       
    }
-    if (playing === true ) {
-         Player.play()
-    }
-    else if  (playing === false) {
-         Player.pause()
-    }
     
    
     return (
         <div className={styles["player"]}>
-           <audio id="player" 
-             src={props.url} 
-             onCanPlay={makePlay} 
-             onLoadStart={makeunplay} 
-             onError={delStream} autoPlay />
+           <ReactPlayer id="player" 
+             url={props.url} 
+            onCanPlay={makePlay}
+            onLoadStart={makeunplay}
+             style={{display:"none"}}
+             onError={delStream}
+            playing={playing} />
             
             <div className={styles["player-img"]}>
                 <img 
@@ -65,8 +61,8 @@ const Player = (props) => {
                 id={styles["play-icon"]} 
                 className={styles["play-controls"]} 
                 style={{display: playing ? 'none': 'inline',
-                visibility: playble ? "visible" : "hidden"
-                }}
+                      opacity:playble ? "1": "0",
+                      pointerEvents:playble ? "all": "none"}}
                 onClick={play} 
                  ></button>
             <button 

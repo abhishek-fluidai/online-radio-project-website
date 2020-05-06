@@ -1,0 +1,53 @@
+#nav {
+    width: 10%;
+    box-sizing: border-box;
+    position: relative;
+/*
+    left:0;
+    top: 0;
+*/
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.logo {
+   
+    cursor: pointer;
+    transition: all .3s linear;
+    
+}
+.item {
+    margin: 20px 0 20px 20px;
+    display: flex;
+    overflow: hidden;
+}
+
+.item img  {
+    width: 20px;
+    height: 20px;
+}
+.item span {
+    font-weight: 300;
+    margin-left: 10px;
+    position: absolute
+     
+}
+#nav.collapsed {
+    width: 60px;
+}
+#nav.collapsed .item {
+   margin:20px auto; 
+}
+#nav.collapsed .item span{
+    
+     display: none;
+}
+
+
+
+#nav.collapsed .logo {
+    transform: scale(0.7)
+}

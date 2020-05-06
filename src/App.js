@@ -4,7 +4,7 @@ import './App.css';
 import Player from './components/Player/Player'
 import Header from './components/Header/Header'
 import Station from './components/Station/Station'
-import Nav from './components/Nav/Nav';
+// import Nav from './components/Nav/Nav';
 import RadioBrowser from 'radio-browser'
 
 
@@ -72,7 +72,7 @@ function App() {
     <div className="App">
       <Header searcHandler={searchStations}/>
       <main>
-      <Nav />
+      {/* <Nav /> */}
       <div className="stations">
          {stationsList}
       </div>

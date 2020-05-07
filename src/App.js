@@ -4,8 +4,6 @@ import './App.css';
 import Player from './components/Player/Player'
 import Header from './components/Header/Header'
 import Station from './components/Station/Station'
-// import Nav from './components/Nav/Nav';
-import RadioBrowser from 'radio-browser'
 
 
 function App() {
@@ -17,7 +15,7 @@ function App() {
 
   useEffect(() => {
    
-    axios.get(BASE_URL+'/stations/topvote/9')
+    axios.get(BASE_URL+'/stations/topvote/20')
       .then(info => {
         tuneStations(info.data);
 //         console.log(info.data)
@@ -70,13 +68,12 @@ function App() {
 
   return (
     <div className="App">
-      <Header searcHandler={searchStations}/>
-      <main>
-      {/* <Nav /> */}
+      <Header searcHandler={searchStations}>
       <div className="stations">
          {stationsList}
       </div>
-      </main>
+      </Header>
+       
         {playerInfo}
     </div>
   );

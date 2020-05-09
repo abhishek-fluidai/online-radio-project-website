@@ -1,25 +1,3 @@
 .App {
   text-align: center;
 }
-
-.stations {
-display: grid;
- grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-grid-column-gap: 20px;
-grid-row-gap: 20px;
- margin: 20px
-}
-main {
-    width: 100%;
-    height: 100%;
-    display: flex;
-flex-direction: row;
-    
-}
-/*
-.div1 { grid-area: 1 / 1 / 2 / 2; }
-.div2 { grid-area: 1 / 2 / 2 / 3; }
-.div3 { grid-area: 1 / 3 / 2 / 4; }
-.div4 { grid-area: 2 / 1 / 3 / 2; }
-.div5 { grid-area: 2 / 2 / 3 / 3; }
-.div6 { grid-area: 2 / 3 / 3 / 4; }*/

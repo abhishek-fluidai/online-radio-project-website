@@ -5,7 +5,7 @@ import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import InputBase from "@material-ui/core/InputBase";
-import { fade, makeStyles, useTheme } from "@material-ui/core/styles";
+import { useTheme } from "@material-ui/core/styles";
 import MenuIcon from "@material-ui/icons/Menu";
 import SearchIcon from "@material-ui/icons/Search";
 import Drawer from "@material-ui/core/Drawer";
@@ -24,122 +24,9 @@ import RadioIcon from "@material-ui/icons/Radio";
 import HelpIcon from "@material-ui/icons/Help";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import GetAppIcon from "@material-ui/icons/GetApp";
-const drawerWidth = 240;
+import useStyles from "./Styles";
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display: "flex",
-    flexGrow: 1,
-  },
-  appBar: {
-    zIndex: theme.zIndex.drawer + 1,
-    transition: theme.transitions.create(["width", "margin"], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-  },
-  appBarShift: {
-    marginLeft: drawerWidth,
-    width: `calc(100% - ${drawerWidth}px)`,
-    transition: theme.transitions.create(["width", "margin"], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  },
-  menuButton: {
-    marginRight: 36,
-    [theme.breakpoints.down("sm")]: {
-      display: "none",
-    },
-  },
-  hide: {
-    display: "none",
-  },
-  drawer: {
-    width: drawerWidth,
-    flexShrink: 0,
-    zIndex: 999,
-    whiteSpace: "nowrap",
-    [theme.breakpoints.down("sm")]: {
-      display: "none",
-    },
-  },
-  drawerOpen: {
-    width: drawerWidth,
-    transition: theme.transitions.create("width", {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  },
-  drawerClose: {
-    transition: theme.transitions.create("width", {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-    overflowX: "hidden",
-    width: "60px",
-    [theme.breakpoints.up("sm")]: {
-      width: "60px",
-    },
-  },
-  toolbar: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "flex-end",
-    padding: theme.spacing(0, 1),
-    // necessary for content to be below app bar
-    ...theme.mixins.toolbar,
-  },
-  content: {
-    flexGrow: 1,
-    marginTop: "60px",
-  },
-
-  title: {
-    display: "block",
-    marginRight: "auto",
-  },
-  search: {
-    position: "relative",
-    borderRadius: theme.shape.borderRadius,
-    backgroundColor: fade(theme.palette.common.white, 0.15),
-    "&:hover": {
-      backgroundColor: fade(theme.palette.common.white, 0.25),
-    },
-    marginLeft: 0,
-    width: "45%",
-    display: "none",
-    [theme.breakpoints.up("sm")]: {
-      marginLeft: theme.spacing(1),
-      width: "250px",
-      display: "block",
-    },
-  },
-  searchIcon: {
-    padding: theme.spacing(0, 2),
-    height: "100%",
-    position: "absolute",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  inputRoot: {
-    color: "inherit",
-  },
-  inputInput: {
-    padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
-    transition: theme.transitions.create("width"),
-    width: "100%",
-    [theme.breakpoints.up("sm")]: {
-      width: "12ch",
-      "&:focus": {
-        width: "20ch",
-      },
-    },
-  },
-}));
+import { NavLink } from "react-router-dom";
 
 export default function SearchAppBar(props) {
   const classes = useStyles();
@@ -177,7 +64,7 @@ export default function SearchAppBar(props) {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap className={classes.title}>
-            Mini variant drawer
+            Indi-FM
           </Typography>
 
           <div className={classes.search}>
@@ -189,7 +76,7 @@ export default function SearchAppBar(props) {
               onChange={(e) => setValue(e.target.value)}
               placeholder="Search…"
               onKeyDown={(e) =>
-                e.keyCode === 13 ? props.searcHandler(value) : ""
+                e.keyCode === 13 ? console.log(e.target.value) : ""
               }
               classes={{
                 root: classes.inputRoot,
@@ -225,20 +112,23 @@ export default function SearchAppBar(props) {
         </div>
         <Divider />
         <List>
-          <ListItem button key={"home"}>
-            <ListItemIcon>
-              <HomeIcon />
-            </ListItemIcon>
-            <ListItemText primary={"Home"} />
-          </ListItem>
+          <NavLink to="/">
+            <ListItem button key={"home"}>
+              <ListItemIcon>
+                <HomeIcon />
+              </ListItemIcon>
+              <ListItemText primary={"Home"} />
+            </ListItem>
+          </NavLink>
 
-          <ListItem button key={"stations"}>
-            <ListItemIcon>
-              <RadioIcon />
-            </ListItemIcon>
-            <ListItemText primary={"Stations"} />
-          </ListItem>
-
+          <NavLink to="/stations">
+            <ListItem button key={"stations"}>
+              <ListItemIcon>
+                <RadioIcon />
+              </ListItemIcon>
+              <ListItemText primary={"Stations"} />
+            </ListItem>
+          </NavLink>
           <ListItem button key={"Favorite"}>
             <ListItemIcon>
               <FavoriteIcon />
@@ -264,26 +154,23 @@ export default function SearchAppBar(props) {
         <List>
           <ListItem button key={"Help"}>
             <ListItemIcon>
-              {" "}
               <HelpIcon />
             </ListItemIcon>
             <ListItemText primary={"Need help ?"} />
           </ListItem>
 
-          <ListItem button key={"text"}>
+          <ListItem button key={"contact"}>
             <ListItemIcon>
-              {" "}
               <MailIcon />
             </ListItemIcon>
-            <ListItemText primary={"text"} />
+            <ListItemText primary={"Contact"} />
           </ListItem>
 
           <ListItem button key={"Apps"}>
             <ListItemIcon>
-              {" "}
               <GetAppIcon />
             </ListItemIcon>
-            <ListItemText primary={"Download Applications"} />
+            <ListItemText primary={"Applications"} />
           </ListItem>
         </List>
       </Drawer>
